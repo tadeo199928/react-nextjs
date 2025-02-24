@@ -22,6 +22,7 @@
     border-right-width: 8px;
     border-right-color: rgb(255, 255, 255);
     border-right-style: solid;
+    border-radius: 20px;
 }
 
 .borderInsideS{
@@ -37,6 +38,7 @@
     border-right-width: 4px;
     border-right-color: rgb(255, 255, 255);
     border-right-style: solid;
+    border-radius: 20px;
 }
 
 .borderOutSide{
@@ -52,6 +54,7 @@
     border-right-width: 8px;
     border-right-color: rgb(127, 127, 127);
     border-right-style: solid;
+    border-radius: 20px;
 }
 a {
     text-decoration: none;
