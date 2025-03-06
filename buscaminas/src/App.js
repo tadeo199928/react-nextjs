@@ -2,21 +2,33 @@ import { useState } from 'react';
 import './App.css';
 import Celda from './Celda'
 import Marcador from './Marcado';
+import Emoji from './emoji';
 
 function App() {
   //Def val/ props
-  const [mapaValores, setMapaValores]=useState(Array(25).fill(""));
+  const valores= ["1","1","1","0","0","1","*","1","0","0","1","1","2","2","1","0","1","*","*","1","0","1","2","2","1"]
+  const [mapaValores, setMapaValores]=useState(Array(25).fill(" "));
   const celdas=mapaValores.map((item,index)=>
-    <div className="col-auto p-0" key={index}><Celda valor={item}/></div> 
+    <div className="col-auto p-0" key={index}><Celda valor={item} onCeldaClick=
+  {()=>mostrarValor(index)}/></div> 
   );
+  const [juegoEnCurso, setJuegoEnCurso] = useState(false);
+ 
+  const mostrarValor= (index)=>{
+    const valoresNuevos = mapaValores.slice();
+    valoresNuevos[index] = valores[index];
+    setMapaValores(valoresNuevos);
+}
 
   // function answer button
   const btnComenzar= ()=>{
-    setMapaValores(["1","1","1","0","0","1","*","1","0","0","1","1","2","2","1","0","1","*","*","1","0","1","2","2","1"]);
+    setMapaValores(Array(25).fill(" "));
+    setJuegoEnCurso(true);
   }
 
   const btnRestart = ()=>{
     setMapaValores(Array(25).fill(" ")); 
+    setJuegoEnCurso(false);
   }
 
   return (
@@ -25,9 +37,7 @@ function App() {
         <div className="row bg-body-secondary borderInside ">
           <div className="d-flex flex-wrap justify-content-around">
             <Marcador Minas="100"/>
-            <div className="align-self-center m-2 borderInsideS">
-              <img src="acierto.png" style={{ width: 50 }} alt="Smile"/>
-            </div>
+            <Emoji juegoEnCurso={juegoEnCurso} />
             <div
               className="lcdText text-danger pe-2 m-2 borderInsideS"
               style={{ width: 54 }}
